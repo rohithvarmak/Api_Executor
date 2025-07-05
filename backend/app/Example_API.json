@@ -1,0 +1,973 @@
+{
+    "apiName": "vacation-management",
+    "baseUrl": "https://lmsgen.onwavemaker.com/services",
+    "authentication": {
+      "type": "bearer",
+      "token": "your-token"
+    },
+    "endpoints": [
+      {
+        "name": "findDepartments",
+        "method": "GET",
+        "path": "/hrdb/Department",
+        "description": "Returns the paginated list of Department instances matching the optional query (q) request param. If there is no query provided, it returns all the instances. Pagination & Sorting parameters such as page& size, sort can be sent as request parameters. The sort value should be a comma separated list of field names & optional sort order to sort the data on. eg: field1 asc, field2 desc etc",
+        "parameters": {
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "createDepartment",
+        "method": "POST",
+        "path": "/hrdb/Department",
+        "description": "Creates a new Department instance.",
+        "parameters": {
+          "Department": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "success_message"
+      },
+      {
+        "name": "getDepartmentAggregatedValues",
+        "method": "POST",
+        "path": "/hrdb/Department/aggregations",
+        "description": "Returns aggregated result with given aggregation info",
+        "parameters": {
+          "AggregationInfo": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "countDepartments",
+        "method": "GET",
+        "path": "/hrdb/Department/count",
+        "description": "Returns the total count of Department instances matching the optional query (q) request param.",
+        "parameters": {
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "getByDeptCode",
+        "method": "GET",
+        "path": "/hrdb/Department/deptCode/{deptCode}",
+        "description": "Returns the matching Department with given unique key values.",
+        "parameters": {
+          "deptCode": {
+            "type": "string",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "exportDepartmentsAndGetURL",
+        "method": "POST",
+        "path": "/hrdb/Department/export",
+        "description": "Returns a URL to download a file for the data matching the optional query (q) request param and the required fields provided in the Export Options.",
+        "parameters": {
+          "DataExportOptions": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "exportDepartments",
+        "method": "GET",
+        "path": "/hrdb/Department/export/{exportType}",
+        "description": "Returns downloadable file for the data matching the optional query (q) request param.",
+        "parameters": {
+          "exportType": {
+            "type": "string",
+            "required": true,
+            "description": ""
+          },
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "filterDepartments",
+        "method": "POST",
+        "path": "/hrdb/Department/filter",
+        "description": "Returns the paginated list of Department instances matching the optional query (q) request param. This API should be used only if the query string is too big to fit in GET request with request param. The request has to made in application/x-www-form-urlencoded format.",
+        "parameters": {
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "searchDepartmentsByQueryFilters",
+        "method": "POST",
+        "path": "/hrdb/Department/search",
+        "description": "Returns the list of Department instances matching the search criteria.",
+        "parameters": {
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          },
+          "QueryFilter": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "getDepartment",
+        "method": "GET",
+        "path": "/hrdb/Department/{deptId}",
+        "description": "Returns the Department instance associated with the given id.",
+        "parameters": {
+          "deptId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "editDepartment",
+        "method": "PUT",
+        "path": "/hrdb/Department/{deptId}",
+        "description": "Updates the Department instance associated with the given id.",
+        "parameters": {
+          "deptId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "Department": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "deleteDepartment",
+        "method": "DELETE",
+        "path": "/hrdb/Department/{deptId}",
+        "description": "Deletes the Department instance associated with the given id.",
+        "parameters": {
+          "deptId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "success_message"
+      },
+      {
+        "name": "patchDepartment",
+        "method": "PATCH",
+        "path": "/hrdb/Department/{deptId}",
+        "description": "Partially updates the Department instance associated with the given id.",
+        "parameters": {
+          "deptId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "Department": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "findAssociatedEmployees",
+        "method": "GET",
+        "path": "/hrdb/Department/{deptId}/employees",
+        "description": "Gets the employees instance associated with the given id.",
+        "parameters": {
+          "deptId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "findEmployees",
+        "method": "GET",
+        "path": "/hrdb/Employee",
+        "description": "Returns the paginated list of Employee instances matching the optional query (q) request param. If there is no query provided, it returns all the instances. Pagination & Sorting parameters such as page& size, sort can be sent as request parameters. The sort value should be a comma separated list of field names & optional sort order to sort the data on. eg: field1 asc, field2 desc etc",
+        "parameters": {
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "createEmployee",
+        "method": "POST",
+        "path": "/hrdb/Employee",
+        "description": "Creates a new Employee instance.",
+        "parameters": {
+          "wm_data_json": {
+            "type": "string",
+            "required": true,
+            "description": ""
+          },
+          "picurl": {
+            "type": "file",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "success_message"
+      },
+      {
+        "name": "getEmployeeAggregatedValues",
+        "method": "POST",
+        "path": "/hrdb/Employee/aggregations",
+        "description": "Returns aggregated result with given aggregation info",
+        "parameters": {
+          "AggregationInfo": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "countEmployees",
+        "method": "GET",
+        "path": "/hrdb/Employee/count",
+        "description": "Returns the total count of Employee instances matching the optional query (q) request param.",
+        "parameters": {
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "exportEmployeesAndGetURL",
+        "method": "POST",
+        "path": "/hrdb/Employee/export",
+        "description": "Returns a URL to download a file for the data matching the optional query (q) request param and the required fields provided in the Export Options.",
+        "parameters": {
+          "DataExportOptions": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "exportEmployees",
+        "method": "GET",
+        "path": "/hrdb/Employee/export/{exportType}",
+        "description": "Returns downloadable file for the data matching the optional query (q) request param.",
+        "parameters": {
+          "exportType": {
+            "type": "string",
+            "required": true,
+            "description": ""
+          },
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "filterEmployees",
+        "method": "POST",
+        "path": "/hrdb/Employee/filter",
+        "description": "Returns the paginated list of Employee instances matching the optional query (q) request param. This API should be used only if the query string is too big to fit in GET request with request param. The request has to made in application/x-www-form-urlencoded format.",
+        "parameters": {
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "searchEmployeesByQueryFilters",
+        "method": "POST",
+        "path": "/hrdb/Employee/search",
+        "description": "Returns the list of Employee instances matching the search criteria.",
+        "parameters": {
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          },
+          "QueryFilter": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "getEmployee",
+        "method": "GET",
+        "path": "/hrdb/Employee/{empId}",
+        "description": "Returns the Employee instance associated with the given id.",
+        "parameters": {
+          "empId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "editEmployee",
+        "method": "POST",
+        "path": "/hrdb/Employee/{empId}",
+        "description": "Updates the Employee instance associated with the given id.This API should be used when Employee instance fields that require multipart data.",
+        "parameters": {
+          "empId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "editEmployee",
+        "method": "PUT",
+        "path": "/hrdb/Employee/{empId}",
+        "description": "Updates the Employee instance associated with the given id.",
+        "parameters": {
+          "empId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "Employee": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "deleteEmployee",
+        "method": "DELETE",
+        "path": "/hrdb/Employee/{empId}",
+        "description": "Deletes the Employee instance associated with the given id.",
+        "parameters": {
+          "empId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "success_message"
+      },
+      {
+        "name": "patchEmployee",
+        "method": "PATCH",
+        "path": "/hrdb/Employee/{empId}",
+        "description": "Partially updates the Employee instance associated with the given id.",
+        "parameters": {
+          "empId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "Employee": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "getEmployeeBLOBContent",
+        "method": "GET",
+        "path": "/hrdb/Employee/{empId}/content/{fieldName}",
+        "description": "Retrieves content for the given BLOB field in Employee instance",
+        "parameters": {
+          "empId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "fieldName": {
+            "type": "string",
+            "required": true,
+            "description": ""
+          },
+          "download": {
+            "type": "boolean",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "findAssociatedEmployeesForManagerId",
+        "method": "GET",
+        "path": "/hrdb/Employee/{empId}/employeesForManagerId",
+        "description": "Gets the employeesForManagerId instance associated with the given id.",
+        "parameters": {
+          "empId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "findAssociatedVacations",
+        "method": "GET",
+        "path": "/hrdb/Employee/{empId}/vacations",
+        "description": "Gets the vacations instance associated with the given id.",
+        "parameters": {
+          "empId": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "findVacations",
+        "method": "GET",
+        "path": "/hrdb/Vacation",
+        "description": "Returns the paginated list of Vacation instances matching the optional query (q) request param. If there is no query provided, it returns all the instances. Pagination & Sorting parameters such as page& size, sort can be sent as request parameters. The sort value should be a comma separated list of field names & optional sort order to sort the data on. eg: field1 asc, field2 desc etc",
+        "parameters": {
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "createVacation",
+        "method": "POST",
+        "path": "/hrdb/Vacation",
+        "description": "Creates a new Vacation instance.",
+        "parameters": {
+          "Vacation": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "success_message"
+      },
+      {
+        "name": "getVacationAggregatedValues",
+        "method": "POST",
+        "path": "/hrdb/Vacation/aggregations",
+        "description": "Returns aggregated result with given aggregation info",
+        "parameters": {
+          "AggregationInfo": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "countVacations",
+        "method": "GET",
+        "path": "/hrdb/Vacation/count",
+        "description": "Returns the total count of Vacation instances matching the optional query (q) request param.",
+        "parameters": {
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "exportVacationsAndGetURL",
+        "method": "POST",
+        "path": "/hrdb/Vacation/export",
+        "description": "Returns a URL to download a file for the data matching the optional query (q) request param and the required fields provided in the Export Options.",
+        "parameters": {
+          "DataExportOptions": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "exportVacations",
+        "method": "GET",
+        "path": "/hrdb/Vacation/export/{exportType}",
+        "description": "Returns downloadable file for the data matching the optional query (q) request param.",
+        "parameters": {
+          "exportType": {
+            "type": "string",
+            "required": true,
+            "description": ""
+          },
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "filterVacations",
+        "method": "POST",
+        "path": "/hrdb/Vacation/filter",
+        "description": "Returns the paginated list of Vacation instances matching the optional query (q) request param. This API should be used only if the query string is too big to fit in GET request with request param. The request has to made in application/x-www-form-urlencoded format.",
+        "parameters": {
+          "q": {
+            "type": "string",
+            "required": false,
+            "description": "conditions to filter the results"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "searchVacationsByQueryFilters",
+        "method": "POST",
+        "path": "/hrdb/Vacation/search",
+        "description": "Returns the list of Vacation instances matching the search criteria.",
+        "parameters": {
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "size": {
+            "type": "integer",
+            "required": false,
+            "description": ""
+          },
+          "sort": {
+            "type": "string",
+            "required": false,
+            "description": ""
+          },
+          "QueryFilter": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "getVacation",
+        "method": "GET",
+        "path": "/hrdb/Vacation/{id}",
+        "description": "Returns the Vacation instance associated with the given id.",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "editVacation",
+        "method": "PUT",
+        "path": "/hrdb/Vacation/{id}",
+        "description": "Updates the Vacation instance associated with the given id.",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "Vacation": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      },
+      {
+        "name": "deleteVacation",
+        "method": "DELETE",
+        "path": "/hrdb/Vacation/{id}",
+        "description": "Deletes the Vacation instance associated with the given id.",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "success_message"
+      },
+      {
+        "name": "patchVacation",
+        "method": "PATCH",
+        "path": "/hrdb/Vacation/{id}",
+        "description": "Partially updates the Vacation instance associated with the given id.",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": ""
+          },
+          "Vacation": {
+            "type": "object",
+            "required": true,
+            "description": ""
+          }
+        },
+        "returns": "table_data"
+      }
+    ]
+  }
