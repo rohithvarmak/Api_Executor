@@ -16,6 +16,8 @@ class ResponseFormatter:
                 "data": rows,
                 "columns": ResponseFormatter._infer_columns(rows),
             }
+        if return_type == "json_data":
+            return api_json["content"]
         if return_type == "success_message":
             return {"type": "message", "text": "Success"}
         # default passthrough

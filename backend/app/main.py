@@ -8,6 +8,7 @@ from typing import Dict, Any, List
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+import httpx
 
 from .core.schemas import (
     ChatRequest,
@@ -63,10 +64,20 @@ async def handle_chat(request: ChatRequest):
     _conversations[conv_id] = history
 
     # determine active API spec for this conversation
-    active_api = await session_store.get_active_api(conv_id)
-    if active_api is None:
-        active_api = schema_processor.first_api_name()
+    # active_api = await session_store.get_active_api(conv_id)
+    # if active_api is None:
+    #     active_api = schema_processor.first_api_name()
 
+    spec_url = f"https://swaggerparserbackend.onwavemaker.com/swagger/{request.spec_id}"
+    async with httpx.AsyncClient() as client:
+        response = await client.get(spec_url)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        parsed_spec: Dict[str, Any] = response.json()
+        parsed_spec = parsed_spec.get("parsed_spec", {})
+
+    print(f"Parsed spec: {parsed_spec}")
+    schema_processor.register_spec(parsed_spec)
+    active_api = parsed_spec.get("apiName", schema_processor.first_api_name())
     # append user message
     history.append(Message(role="user", content=request.messages[-1].content))
 
@@ -96,7 +107,7 @@ async def handle_chat(request: ChatRequest):
             arguments = raw_args
         try:
             api_response = await api_orchestrator.execute(endpoint_name, arguments)
-            formatted = ResponseFormatter.format_response(api_response.json(), return_type="table_data")
+            formatted = ResponseFormatter.format_response(api_response.json(), return_type="json_data")
             history.append(Message(role="assistant", content=str(formatted)))
         except Exception as exc:  # noqa: BLE001
             logger.exception("API orchestration error")

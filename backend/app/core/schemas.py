@@ -10,6 +10,7 @@ class Message(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: List[Message]
+    spec_id: str = Field(..., description="ID of the API spec to use for this conversation")
     conversation_id: Optional[str] = Field(None, description="Optional conversation ID for continuation")
 
 
